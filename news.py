@@ -47,6 +47,7 @@ print (response.json())
 
 mama = response.json()
 print(mama)
+kdkd
 
 # print (response)
 
