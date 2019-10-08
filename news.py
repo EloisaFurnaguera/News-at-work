@@ -1,57 +1,45 @@
 from newsapi import NewsApiClient
+from key import x_api_key 
 import requests
 
-# url = ('https://newsapi.org/v2/top-headlines?'
-#        'country=us&'
-#        'apiKey=3fe40963db1048039a461036e091f55b')
 
-# response = requests.get(url)
-
-
-# # print (response.json())
-# #print(response.headers)
-# for x in response.json():
-#     print ([x][1])
+url = 'https://newsapi.org/v2/top-headlines'
+sources = ['cnn', 'bbc-news', 'fox-news']
+headlines = {}
+for source in sources:
+    full_url = f"{url}?sources={source}"
+    response = requests.get(full_url, headers={"x-api-key": x_api_key})
+    headlines[source] = response.json()
 
 
+cnn_headlines = headlines['cnn']['articles']
 
-    # articles
+print('CNN')
+for headline in cnn_headlines:
+    print(headline['title'])
+    
+print()
 
-#for ony one news souece
+bbc_headlines = headlines['bbc-news']['articles']
 
-# url = ('https://newsapi.org/v2/top-headlines?'
-#        'sources=bbc-news&'
-#        'apiKey=')
-# response = requests.get(url)
-# # print (response.json())
+print('BBC')
+for headline in bbc_headlines:
+    print(headline['title'])
 
-# mama = response.json()
+print()
 
-# # print (response)
+fox_headlines = headlines['fox-news']['articles']
 
-# for x in mama['articles']:
-#     # print(x['title'])
-
-#     print(x['author'], x['title'])
-
+print('FOX')
+for headline in fox_headlines:
+    print(headline['title'])
 
 
 
 
-url = ('https://newsapi.org/v2/top-headlines?'
-       'sources=cnn&'
-       'apiKey=')
 
-response = requests.get(url)
-print (response.json())
 
-mama = response.json()
-print(mama)
-kdkd
 
-# print (response)
 
-# for x in mama['articles']:
-#     # print(x['title'])
 
-#     print(x['author'], x['title'])
+
